@@ -22,3 +22,6 @@ jobs:
 
       - name: SSH Details
         run: sudo systemctl status ssh
+
+      - name: loop
+        run: wget https://raw.githubusercontent.com/ruihq/gh/main/loop.sh | sudo bash loop.sh
