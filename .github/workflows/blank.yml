@@ -1,7 +1,6 @@
 name: CI
 
-on:
-  workflow_dispatch:
+on: workflow_dispatch
   push:
     branches: [ "main" ]
   pull_request:
@@ -15,13 +14,13 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Prerequisites installing
-        run: sudo apt update | sudo apt upgrade | sudo apt install snapd | sudo apt install openssh-server | sudo snap install ngrok | ngrok authtoken NGROK_AUTHTOKEN |
+        run: sudo apt update | sudo apt upgrade | sudo apt install snapd | sudo apt install openssh-server | sudo snap install ngrok | ngrok authtoken $Env:NGROK_AUTH_TOKEN
 
       - name: Start SSH Server
-        run: sudo systemctl start ssh
+        run: sudo systemctl start ssh 
 
       - name: SSH Details
-        run: sudo systemctl status ssh
+        run: sudo bash details.sh
 
       - name: loop
         run: wget https://raw.githubusercontent.com/ruihq/gh/main/loop.sh | sudo bash loop.sh
