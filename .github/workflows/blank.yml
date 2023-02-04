@@ -14,11 +14,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Getting SuperUser
+        run: sudo su
+
       - name: setup
         run: |
           wget https://raw.githubusercontent.com/ruihq/gh/main/installer.sh
           sudo bash installer.sh
-          ngrok authtoken $Env:NGROK_AUTH_TOKEN
+          sudo ngrok authtoken $Env:NGROK_AUTH_TOKEN
       
       - name: Start SSH Server
         run: sudo systemctl start ssh 
