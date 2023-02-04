@@ -1,4 +1,4 @@
-name: CI
+name: CIayml
 
 on: 
  workflow_dispatch:
