@@ -14,9 +14,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Prerequisites installing
-        run: sudo apt update | sudo apt upgrade | sudo apt install snapd | sudo apt install openssh-server | sudo snap install ngrok | ngrok authtoken $Env:NGROK_AUTH_TOKEN
-
+      - name: setup
+        run: |
+          wget https://raw.githubusercontent.com/ruihq/gh/main/installer.sh
+          sudo bash installer.sh
+          ngrok authtoken $Env:NGROK_AUTH_TOKEN
+      
       - name: Start SSH Server
         run: sudo systemctl start ssh 
 
